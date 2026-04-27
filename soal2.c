@@ -1,3 +1,13 @@
+/** EL2008 Praktikum Pemecahan Masalah dengan Pemrograman 2024/2025
+*   Modul               : 3 – Structures and Dynamic Arrays
+*   Hari dan Tanggal    : Rabu, 22 april 2026
+*   Nama (NIM)          : Ahmad Akhdan Tristan Salman (13224039)
+*   Nama File           : soal2.c
+*   Deskripsi           : Program untuk mengurutkan data meteorit dan cetak tiga terbaik.
+* 
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 
@@ -26,13 +36,13 @@ int pembanding(const meteorit *a, const meteorit *b) {
     return strcmp(m1->nama, m2->nama);
 }
 
-void quickSort(meteorit arr[], int low, int high, int (*cmp)(const meteorit*, const meteorit*)) {
+void quickSort(meteorit arr[], int low, int high, int (*banding)(const meteorit*, const meteorit*)) {
     if (low < high) {
         meteorit pivot = arr[high];
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (cmp(&arr[j], &pivot) <= 0) { 
+            if (banding(&arr[j], &pivot) <= 0) { 
                 i++;
                 swap(&arr[i], &arr[j]);
             }
@@ -41,8 +51,8 @@ void quickSort(meteorit arr[], int low, int high, int (*cmp)(const meteorit*, co
 
         int pi = i + 1;
 
-        quickSort(arr, low, pi - 1, cmp);
-        quickSort(arr, pi + 1, high, cmp);
+        quickSort(arr, low, pi - 1, banding);
+        quickSort(arr, pi + 1, high, banding);
     }
 }
 
